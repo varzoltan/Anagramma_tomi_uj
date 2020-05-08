@@ -1,0 +1,7 @@
+C:\Users\Rendszergazda\Documents\GitHub\Anagramma_tomi_uj\Anagramma_tomi_uj\bin\Debug\Anagramma_tomi_uj.exe.config
+C:\Users\Rendszergazda\Documents\GitHub\Anagramma_tomi_uj\Anagramma_tomi_uj\bin\Debug\Anagramma_tomi_uj.exe
+C:\Users\Rendszergazda\Documents\GitHub\Anagramma_tomi_uj\Anagramma_tomi_uj\bin\Debug\Anagramma_tomi_uj.pdb
+C:\Users\Rendszergazda\Documents\GitHub\Anagramma_tomi_uj\Anagramma_tomi_uj\obj\Debug\Anagramma_tomi_uj.csprojAssemblyReference.cache
+C:\Users\Rendszergazda\Documents\GitHub\Anagramma_tomi_uj\Anagramma_tomi_uj\obj\Debug\Anagramma_tomi_uj.csproj.CoreCompileInputs.cache
+C:\Users\Rendszergazda\Documents\GitHub\Anagramma_tomi_uj\Anagramma_tomi_uj\obj\Debug\Anagramma_tomi_uj.exe
+C:\Users\Rendszergazda\Documents\GitHub\Anagramma_tomi_uj\Anagramma_tomi_uj\obj\Debug\Anagramma_tomi_uj.pdb
