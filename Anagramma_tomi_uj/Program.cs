@@ -28,7 +28,7 @@ namespace Anagramma_tomi_uj
             //1.feladat
             Console.Write("Kérem adjon meg egy szöveget: ");
             string szoveg = Console.ReadLine();
-            char[] rendez = szoveg.ToCharArray();
+            /*char[] rendez = szoveg.ToCharArray();
             Array.Sort(rendez);
             Console.WriteLine(rendez);
             int szamol = 1;
@@ -37,6 +37,10 @@ namespace Anagramma_tomi_uj
                 if (rendez[i-1] == rendez[i])
                 {
                     szamol++;
+                    if (i == rendez.Length - 1)
+                    {
+                        Console.WriteLine("{0}: {1}", rendez[i], szamol);
+                    }
                 }
                 else
                 {                  
@@ -46,6 +50,22 @@ namespace Anagramma_tomi_uj
                     {
                         Console.WriteLine("{0}: {1}", rendez[i], szamol);
                     }
+                }
+            }*/
+            //1.feladat másképp
+            for (int i = 'a';i<='z';i++)
+            {
+                int szamol = 0;
+                for (int j = 0;j<szoveg.Length;j++)
+                {
+                    if (i == szoveg[j])
+                    {
+                        szamol++;
+                    }
+                }
+                if (szamol != 0)
+                {
+                    Console.WriteLine("{0}: {1}", Convert.ToChar(i), szamol);
                 }
             }
 
@@ -67,8 +87,18 @@ namespace Anagramma_tomi_uj
             }*/
 
             //3.feladat
-            string szo = "valami";
-            Console.WriteLine(abc(szo));
+            StreamWriter ir = new StreamWriter("abc.txt");
+            foreach (var sor in adatok)
+            {
+                if (sor.szo != null)
+                {
+                    ir.WriteLine(abc(sor.szo));
+                }
+            }
+            /*string szo = "valami";
+            Console.WriteLine(abc(szo));*/           
+            ir.Close();
+
             Console.ReadKey();
         }
 
