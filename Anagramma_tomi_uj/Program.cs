@@ -53,10 +53,10 @@ namespace Anagramma_tomi_uj
                 }
             }*/
             //1.feladat másképp
-            for (int i = 'a';i<='z';i++)
+            for (int i = 'a'; i <= 'z'; i++)
             {
                 int szamol = 0;
-                for (int j = 0;j<szoveg.Length;j++)
+                for (int j = 0; j < szoveg.Length; j++)
                 {
                     if (i == szoveg[j])
                     {
@@ -96,8 +96,38 @@ namespace Anagramma_tomi_uj
                 }
             }
             /*string szo = "valami";
-            Console.WriteLine(abc(szo));*/           
+            Console.WriteLine(abc(szo));*/
             ir.Close();
+
+            //4.feladat
+            Console.Write("Kérem adjon meg egy szót: ");
+            char[] kar1 = Console.ReadLine().ToCharArray();
+            Array.Sort(kar1);
+            Console.Write("Kérem adjon meg egy másik szót: ");
+            char[] kar2 = Console.ReadLine().ToCharArray();
+            Array.Sort(kar2);          
+            if (kar1.Length == kar2.Length)
+            {
+                bool igaz = false;
+                for (int i = 0; i < kar1.Length; i++)
+                {
+                    if (kar1[i] != kar2[i]) 
+                    {
+                        igaz = true;
+                        Console.WriteLine("Nem anagramma");
+                        break;
+                    }
+                }
+                if (!igaz)
+                {
+                    Console.WriteLine("Anagramma");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Nem anagramma.");
+            }
+
 
             Console.ReadKey();
         }
