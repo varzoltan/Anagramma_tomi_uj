@@ -128,7 +128,84 @@ namespace Anagramma_tomi_uj
                 Console.WriteLine("Nem anagramma.");
             }
 
+            //5.feladat
+            Console.Write("Kérem adjon meg egy szót a szótár.txt állományból: ");
+            string szo = Console.ReadLine();
+            char[] ujszo = abc(szo).ToCharArray();
+            bool ugrik = false;
+            bool nincs = false;
+            for (int i = 0;i<n;i++)
+            {               
+                string sor = adatok[i].szo;
+                char[] ujsor = abc(sor).ToCharArray();
+                if (ujszo.Length == sor.Length)
+                {
+                    ugrik = false;
+                    for (int j = 0; j < sor.Length; j++)
+                    {
+                        if (ujszo[j] != ujsor[j])
+                        {
+                            ugrik = true;
+                            break;
+                        }
+                    }
+                    if (!ugrik)
+                    {
+                        Console.WriteLine(sor);
+                        nincs = true;
+                    }
+                }
+            }
+            if (!nincs)
+            {
+                Console.WriteLine("Nincs a szótárban anagramma");
+            }
 
+            //6.feladat
+            int max = 0;
+            int hely = 0;
+            for (int i = 0; i<n;i++)
+            {
+                if (max < adatok[i].szo.Length)
+                {
+                    max = adatok[i].szo.Length;
+                    hely = i;
+                }
+            }
+            int szamolok = 1;
+            string sor1 = null;
+            string sor2 = null;
+            for (int i = 0; i < n; i++)
+            {              
+                char[] szo1 = null;
+                char[] szo2 = null;              
+                if (max == adatok[i].szo.Length && szamolok == 1)
+                {
+                    sor1 = abc(adatok[i].szo);
+                    szo1 = sor1.ToCharArray();
+                    szamolok++;
+                }
+                if (max == adatok[i].szo.Length && szamolok == 2)
+                {
+                    sor2 = abc(adatok[i].szo);
+                    szo2 = sor2.ToCharArray();
+                }
+                ugrik = false;
+                sor1 = sor2;
+                szamolok = 2;
+                for (int j = 0; j < sor2.Length; j++)
+                {
+                    if (szo1[j] != szo2[j])
+                    {
+                        ugrik = true;
+                        break;
+                    }
+                }
+                if (!ugrik)
+                {
+                    Console.WriteLine(sor1);
+                }
+            }
             Console.ReadKey();
         }
 
