@@ -105,13 +105,13 @@ namespace Anagramma_tomi_uj
             Array.Sort(kar1);
             Console.Write("Kérem adjon meg egy másik szót: ");
             char[] kar2 = Console.ReadLine().ToCharArray();
-            Array.Sort(kar2);          
+            Array.Sort(kar2);
             if (kar1.Length == kar2.Length)
             {
                 bool igaz = false;
                 for (int i = 0; i < kar1.Length; i++)
                 {
-                    if (kar1[i] != kar2[i]) 
+                    if (kar1[i] != kar2[i])
                     {
                         igaz = true;
                         Console.WriteLine("Nem anagramma");
@@ -134,8 +134,8 @@ namespace Anagramma_tomi_uj
             char[] ujszo = abc(szo).ToCharArray();
             bool ugrik = false;
             bool nincs = false;
-            for (int i = 0;i<n;i++)
-            {               
+            for (int i = 0; i < n; i++)
+            {
                 string sor = adatok[i].szo;
                 char[] ujsor = abc(sor).ToCharArray();
                 if (ujszo.Length == sor.Length)
@@ -163,59 +163,63 @@ namespace Anagramma_tomi_uj
 
             //6.feladat
             int max = 0;
-            int hely = 0;
-            for (int i = 0; i<n;i++)
+            for (int i = 0; i < n; i++)
             {
                 if (max < adatok[i].szo.Length)
                 {
                     max = adatok[i].szo.Length;
-                    hely = i;
                 }
             }
-            int szamolok = 1;
-            string sor1 = null;
-            string sor2 = null;
+
+            string[] tomb = { "ser", "der", "res", "sor", "ers", "bor", "sre" };
+            /*int k = 0;
             for (int i = 0; i < n; i++)
-            {              
-                char[] szo1 = null;
-                char[] szo2 = null;              
-                if (max == adatok[i].szo.Length && szamolok == 1)
+            {
+                
+                if (max == adatok[i].szo.Length)
                 {
-                    sor1 = abc(adatok[i].szo);
-                    szo1 = sor1.ToCharArray();
-                    szamolok++;
+                    tomb[k] = adatok[i].szo;
+                    k++;
                 }
-                if (max == adatok[i].szo.Length && szamolok == 2)
+            }*/
+
+            for (int i = 0; i < 6; i++)
+            {
+                //bool igaz = false;
+                int valami = 0;
+                int valami1 = 0;
+                for (int j = i + 1; j < 7; j++)
                 {
-                    sor2 = abc(adatok[i].szo);
-                    szo2 = sor2.ToCharArray();
-                }
-                ugrik = false;
-                sor1 = sor2;
-                szamolok = 2;
-                for (int j = 0; j < sor2.Length; j++)
-                {
-                    if (szo1[j] != szo2[j])
+                    if (abc(tomb[i]) == abc(tomb[j]) && valami1 == 0)
                     {
-                        ugrik = true;
-                        break;
+                        Console.WriteLine(tomb[i]);
+                        Console.WriteLine(tomb[j]);
+                        //igaz = true;
+                        valami++;
+                        valami1++;
+                    }
+                    else if (abc(tomb[i]) == abc(tomb[j]) && valami1 < 1)
+                    {
+                        Console.WriteLine(tomb[j]);
+                    }
+                    if (valami == 0)
+                    {
+
+                        Console.WriteLine(tomb[i]);
                     }
                 }
-                if (!ugrik)
-                {
-                    Console.WriteLine(sor1);
-                }
+                Console.ReadKey();
             }
-            Console.ReadKey();
-        }
 
+            
+        }
         //függvény
         static string abc(string szo)
         {
             char[] szoszo = szo.ToCharArray();
             Array.Sort(szoszo);
             string rendezett = null;
-            for (int i = 0;i<szoszo.Length;i++)
+            for (int i = 0; i < szoszo.Length; i++)
             {
                 rendezett = rendezett + szoszo[i];
             }
