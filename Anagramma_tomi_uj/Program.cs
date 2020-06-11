@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Data.Common;
 
 namespace Anagramma_tomi_uj
 {
@@ -87,12 +88,16 @@ namespace Anagramma_tomi_uj
             }*/
 
             //3.feladat
+            string[] abcsor = new string[n];
             StreamWriter ir = new StreamWriter("abc.txt");
+            int k = 0;
             foreach (var sor in adatok)
             {
                 if (sor.szo != null)
                 {
                     ir.WriteLine(abc(sor.szo));
+                    abcsor[k] = abc(sor.szo)+" "+k.ToString();
+                    k++;
                 }
             }
             /*string szo = "valami";
@@ -171,8 +176,8 @@ namespace Anagramma_tomi_uj
                 }
             }
 
-            string[] tomb = { "ser", "der", "res", "sor", "ers", "bor", "sre" };
-            /*int k = 0;
+            string[] tomb = new string[n];
+            k = 0;
             for (int i = 0; i < n; i++)
             {
                 
@@ -181,37 +186,86 @@ namespace Anagramma_tomi_uj
                     tomb[k] = adatok[i].szo;
                     k++;
                 }
-            }*/
-
-            for (int i = 0; i < 6; i++)
+            }
+            for (int i = 0;i<k;i++)
             {
-                //bool igaz = false;
-                int valami = 0;
-                int valami1 = 0;
-                for (int j = i + 1; j < 7; j++)
-                {
-                    if (abc(tomb[i]) == abc(tomb[j]) && valami1 == 0)
-                    {
-                        Console.WriteLine(tomb[i]);
-                        Console.WriteLine(tomb[j]);
-                        //igaz = true;
-                        valami++;
-                        valami1++;
-                    }
-                    else if (abc(tomb[i]) == abc(tomb[j]) && valami1 < 1)
-                    {
-                        Console.WriteLine(tomb[j]);
-                    }
-                    if (valami == 0)
-                    {
-
-                        Console.WriteLine(tomb[i]);
-                    }
-                }
-                Console.ReadKey();
+                Console.WriteLine(tomb[i]);
             }
 
+            for (int i = 0; i < k-1; i++)
+            {
+                bool igaz = false;
+                for (int j = i + 1; j < k; j++)
+                {
+                    if (abc(tomb[i]) == abc(tomb[j]) && !igaz && tomb[i] != "0")
+                    {
+                        Console.WriteLine(tomb[i]);
+                        Console.WriteLine(tomb[j]);
+                        tomb[j] = "0";
+                        igaz = true;
+                    }
+                    if (abc(tomb[i]) == abc(tomb[j]) && igaz && tomb[i] != "0")
+                    {
+                        Console.WriteLine(tomb[j]);
+                        tomb[j] = "0";
+                    }
+                    if (abc(tomb[i]) != abc(tomb[j]) && tomb[j] !="0")
+                    {
+                        Console.WriteLine(tomb[j]);
+                    }
+                }               
+            }
+
+            //7.feladat
+            string[] rendezett = new string[n];
+            int m = 0;
+            Array.Sort(abcsor);//rendezem abc szerint sorba
+            for (int i = 2;i<31;i++)//rendezem karakterszám szerint sorba
+            {
+                for (int j = 0;j<abcsor.Length;j++)
+                {
+                    string[] db = abcsor[j].Split();
+                    if (db[0].Length == i)
+                    {
+                        rendezett[m] = abcsor[j];
+                        m++;
+                    }
+                }
+            }
             
+            for (int i = 1;i<n;i++)
+            {
+                string[] db1 = rendezett[i - 1].Split();
+                string szo1 = db1[0];
+                int index1 = int.Parse(db1[1]);
+                string[] db2 = rendezett[i].Split();
+                string szo2 = db2[0];
+                int index2 = int.Parse(db2[1]);
+
+                /*if (szo1 != szo2)
+                {
+                    Console.WriteLine();
+                }*/
+                if (szo2.Equals(szo1))
+                {
+                    //Console.WriteLine();
+                    Console.Write(adatok[index1].szo + " ");
+                }
+                else
+                {
+                    Console.Write(adatok[index1].szo);
+                    Console.WriteLine();
+                    if (szo1.Length != szo2.Length)
+                    {
+                        Console.WriteLine();
+                    }
+                    //Console.WriteLine();
+                    //Console.Write(adatok[index2].szo);
+                }               
+            }
+
+            Console.ReadKey();
+
         }
         //függvény
         static string abc(string szo)
